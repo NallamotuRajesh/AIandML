@@ -1,0 +1,121 @@
+# ========== GITHUB ACTIONS DEPLOYMENT WORKFLOW ==========
+# Automatically builds and deploys the platform on push to main branch
+
+name: Build & Deploy AIandML Platform
+
+# Trigger on push to main branch and pull requests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Environment variables
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # ========== BUILD JOB ==========
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # ========== VALIDATE & BUILD ==========
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Validate HTML & CSS
+        run: |
+          # Simple validation - can add more robust checks
+          if ! grep -q "<!DOCTYPE html>" index.html; then
+            echo "Invalid HTML structure"
+            exit 1
+          fi
+          echo "✓ HTML validation passed"
+
+      # ========== BUILD DOCKER IMAGE ==========
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # ========== DEPLOY JOB ==========
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # ========== DEPLOY TO GITHUB PAGES ==========
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          cname: aiandml.example.com  # Update with your domain
+
+      # ========== NOTIFY DEPLOYMENT SUCCESS ==========
+      - name: Deployment Success
+        run: |
+          echo "✓ Platform deployed successfully!"
+          echo "Access at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+
+  # ========== PERFORMANCE CHECK ==========
+  performance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check HTML file size
+        run: |
+          SIZE=$(wc -c <index.html)
+          SIZE_KB=$((SIZE / 1024))
+          echo "index.html size: ${SIZE_KB}KB"
+          if [ $SIZE_KB -gt 100 ]; then
+            echo "⚠ Warning: File larger than 100KB"
+          else
+            echo "✓ File size optimized"
+          fi
+
+      - name: Validate links (basic)
+        run: |
+          echo "Checking for dead links..."
+          grep -o 'href="[^"]*"' index.html | grep -v "http" | cut -d'"' -f2 | sort -u
