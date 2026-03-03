@@ -90,11 +90,26 @@ cd Phase1_PythonForAI/Capstone_StudentAnalytics
 pip install -r requirements.txt
 ```
 
+### 🛠️ Regenerate Dashboard
+The central navigation page (`index.html`) is automatically generated based on the phase folders and
+`LEARNING_GUIDE.md` headers. To rebuild it after adding or editing phases, run one of the following:
+
+```bash
+# use python interpreter explicitly
+python scripts/generate_dashboard.py
+
+# or execute directly if you added the executable bit
+./scripts/generate_dashboard.py
+```
+
+The script overwrites `index.html` with a fresh dashboard layout including phase descriptions and links.
+
+
 ---
 
 ## 📚 Start Here
 
-- **[Central web course](index.html)** – browse topic pages with examples and diagrams
+- **[Central navigation page](index.html)** – one-stop hub with links to every phase, course modules, learning guides and capstone projects (generated automatically via `scripts/generate_dashboard.py`)
 - **[Phase 1: Python for AI](Phase1_PythonForAI/LEARNING_GUIDE.md)** - Data fundamentals
 - **[Phase 2: Core ML](Phase2_CoreML/LEARNING_GUIDE.md)** - ML models & evaluation
 - **[Phase 3: Deep Learning](Phase3_DeepLearning/LEARNING_GUIDE.md)** - Neural networks
