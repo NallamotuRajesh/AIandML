@@ -94,6 +94,7 @@ pip install -r requirements.txt
 
 ## 📚 Start Here
 
+- **[Central web course](index.html)** – browse topic pages with examples and diagrams
 - **[Phase 1: Python for AI](Phase1_PythonForAI/LEARNING_GUIDE.md)** - Data fundamentals
 - **[Phase 2: Core ML](Phase2_CoreML/LEARNING_GUIDE.md)** - ML models & evaluation
 - **[Phase 3: Deep Learning](Phase3_DeepLearning/LEARNING_GUIDE.md)** - Neural networks
