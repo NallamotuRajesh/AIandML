@@ -1,0 +1,64 @@
+/* Shared UI styles for AIandML platform
+   Provides colors, container width, nav and footer styling
+*/
+:root{
+  --brand-1: #667eea;
+  --brand-2: #764ba2;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --card-radius: 12px;
+  --max-width: 1100px;
+}
+
+html,body{height:100%;}
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg,var(--brand-1) 0%,var(--brand-2) 100%);
+  color:#111827;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:40px auto;
+  padding:20px;
+  background:rgba(255,255,255,0.95);
+  border-radius:var(--card-radius);
+  box-shadow:0 6px 30px rgba(2,6,23,0.12);
+}
+
+/* NAV */
+.site-nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  background:rgba(255,255,255,0.95);
+  padding:12px 20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 18px rgba(2,6,23,0.08);
+}
+.site-brand{font-weight:800;color:var(--brand-2);font-size:1.1rem}
+.site-links{display:flex;gap:12px}
+.site-links a{color:#111827;text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
+.site-links a:hover{background:linear-gradient(90deg,var(--brand-1),var(--brand-2));color:#fff}
+
+/* Footer */
+.site-footer{padding:18px;text-align:center;color:var(--muted);font-size:0.95rem;margin-top:32px}
+
+/* Utility */
+.page-title{font-size:1.6rem;margin-bottom:8px}
+.section{margin:18px 0;padding:14px;border-radius:10px;background:#fff}
+
+/* Make tables and code blocks readable */
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border:1px solid #e6e9ef}
+pre{background:#f6f8fa;padding:12px;border-radius:8px;overflow:auto}
+
+@media (max-width:600px){
+  .container{margin:18px;padding:12px}
+  .site-links{display:none}
+}
