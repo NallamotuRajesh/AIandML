@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Environments</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        nav a { margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Virtual Environments</h1>
+    <p>Isolate dependencies per project to avoid conflicts and ensure reproducibility.</p>
+
+    <h2>Example Commands</h2>
+    <pre><code># Create environment
+python -m venv venv
+
+# Activate (Linux/macOS)
+source venv/bin/activate
+
+# Install packages
+pip install pandas matplotlib
+
+# Freeze requirements
+pip freeze &gt; requirements.txt
+</code></pre>
+
+    <h2>Concept Diagram</h2>
+    <pre class="mermaid">
+flowchart LR
+    A[Project] --> B[venv folder]
+    B --> C[site-packages]
+    B --> D[bin/python]
+    A --> E[requirements.txt]
+    </pre>
+
+    <nav>
+        <a href="jupyter.html">&laquo; Previous</a>
+        <a href="index.html">Home &raquo;</a>
+    </nav>
+</body>
+</html>

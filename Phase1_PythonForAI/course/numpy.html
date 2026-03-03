@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NumPy</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        nav a { margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>NumPy</h1>
+    <p>NumPy provides fast array operations and is the backbone of scientific computing in Python.</p>
+
+    <h2>Example</h2>
+    <pre><code>import numpy as np
+
+# Create arrays
+arr = np.array([1, 2, 3, 4])
+matrix = np.zeros((2,2))
+
+# Vectorized operations
+print(arr * 2 + 5)
+
+# Statistical
+print(np.mean(arr), np.std(arr))
+</code></pre>
+
+    <h2>Concept Diagram</h2>
+    <pre class="mermaid">
+flowchart LR
+    A[ndarray] --> B[Vectorization]
+    B --> C[Broadcasting]
+    C --> D[Linear Algebra]
+    D --> E[Random]
+    </pre>
+
+    <h2>Exercises</h2>
+    <ul>
+        <li>Create a 5x5 identity matrix without using np.eye.</li>
+        <li>Broadcast a 1D array across a 2D array and observe the result.</li>
+    </ul>
+
+    <nav>
+        <a href="python_basics.html">&laquo; Previous</a>
+        <a href="pandas.html">Next &raquo;</a>
+    </nav>
+</body>
+</html>

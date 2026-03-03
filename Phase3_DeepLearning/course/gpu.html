@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPU & Optimization</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>body{font-family:Arial, sans-serif;margin:40px;}pre{background:#f4f4f4;padding:10px;}nav a{margin:0 10px;}</style>
+</head>
+<body>
+    <h1>GPU &amp; Optimization</h1>
+    <p>Use GPUs for faster training and optimize with callbacks and data augmentation.</p>
+    <h2>Example</h2>
+    <pre><code>import tensorflow as tf
+print(tf.config.list_physical_devices('GPU'))
+
+# Callbacks
+callbacks = [
+    tf.keras.callbacks.EarlyStopping(monitor='val_loss',patience=3),
+    tf.keras.callbacks.ReduceLROnPlateau()
+]
+
+# Data augmentation
+datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    rotation_range=20, zoom_range=0.2
+)
+</code></pre>
+    <h2>Diagram</h2>
+    <pre class="mermaid">
+flowchart LR
+    A[CPU Data Prep] --> B[GPU Training]
+    B --> C[Callbacks]
+    C --> D[Model Checkpoint]
+    </pre>
+    <h2>Exercises</h2>
+    <ul>
+        <li>Measure training speed with and without GPU.</li>
+        <li>Add a callback to save the best model only.</li>
+    </ul>
+    <nav>
+        <a href="transfer.html">&laquo; Previous</a>
+        <a href="index.html">Home &raquo;</a>
+    </nav>
+</body>
+</html>

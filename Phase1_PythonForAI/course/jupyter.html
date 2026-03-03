@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jupyter Notebooks</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        nav a { margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Jupyter Notebooks</h1>
+    <p>Interactive environment combining code, text, and visualizations in cells.</p>
+
+    <h2>Example</h2>
+    <pre><code># In a notebook cell
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('data.csv')
+df.head()
+
+# Next cell
+plt.plot(df['x'], df['y'])
+plt.show()
+</code></pre>
+
+    <h2>Concept Diagram</h2>
+    <pre class="mermaid">
+flowchart TD
+    A[Notebook] --> B[Code Cells]
+    A --> C[Markdown Cells]
+    A --> D[Outputs]
+    B --> E[Run]
+    </pre>
+
+    <nav>
+        <a href="visualization.html">&laquo; Previous</a>
+        <a href="virtualenv.html">Next &raquo;</a>
+    </nav>
+</body>
+</html>

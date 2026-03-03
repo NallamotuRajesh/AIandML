@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Learning</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>body{font-family:Arial, sans-serif;margin:40px;}pre{background:#f4f4f4;padding:10px;}nav a{margin:0 10px;}</style>
+</head>
+<body>
+    <h1>Transfer Learning</h1>
+    <p>Fine-tune a pre-trained model instead of training from scratch.</p>
+    <h2>Example</h2>
+    <pre><code>from tensorflow.keras.applications import ResNet50
+from tensorflow.keras import layers, models
+
+base = ResNet50(weights='imagenet',include_top=False,input_shape=(224,224,3))
+base.trainable=False
+
+model = models.Sequential([
+    base,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(10,activation='softmax')
+])
+model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+model.fit(train_gen,epochs=3,validation_data=val_gen)
+</code></pre>
+    <h2>Diagram</h2>
+    <pre class="mermaid">
+flowchart TB
+    A[Pre-trained Model] --> B[Freeze Layers]
+    B --> C[Add Custom Head]
+    C --> D[Train on New Data]
+    </pre>
+    <h2>Exercises</h2>
+    <ul>
+        <li>Unfreeze the last block and fine-tune further.</li>
+        <li>Try a different pre-trained model (e.g., MobileNet).</li>
+    </ul>
+    <nav>
+        <a href="rnn_lstm.html">&laquo; Previous</a>
+        <a href="gpu.html">Next &raquo;</a>
+    </nav>
+</body>
+</html>

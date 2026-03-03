@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python for AI & ML - Structured Roadmap</title>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+<style>body{font-family:Arial, sans-serif;margin:40px;}pre{background:#f4f4f4;padding:10px;}nav a{margin:0 10px;}h2{color:#2c3e50;}ul{list-style-type:none;}code{background:#eef;font-size:0.9em;padding:2px 4px;border-radius:4px;}</style>
+</head>
+<body>
+<h1>Python for AI &amp; ML - Structured Roadmap</h1>
+<p>From basic to advanced, this guide outlines concepts and examples at each learning level.</p>
+
+<h2>🔹 LEVEL 1 – Core Python Foundations (Beginner)</h2>
+<h3>Goal: Become comfortable writing clean Python code.</h3>
+
+<h4>1️⃣ Variables &amp; Data Types</h4>
+<p><strong>Concepts</strong>: int, float, string, bool, <code>type()</code>, casting</p>
+<pre><code>age = 30
+salary = 95000.50
+name = "Rajesh"
+is_ml_engineer = True
+
+print(type(age))
+</code></pre>
+<p><em>Why Important for ML?</em> All datasets consist of numeric and categorical values.</p>
+
+<h4>2️⃣ Operators</h4>
+<p>Arithmetic, comparison, logical operators.</p>
+<pre><code>score = 85
+if score > 80 and score < 95:
+    print("Good performance")
+</code></pre>
+
+<h4>3️⃣ Control Flow</h4>
+<pre><code>for i in range(5):
+    print(i)
+</code></pre>
+<p><em>ML Relevance:</em> training loops use this concept.</p>
+
+<h4>4️⃣ Functions</h4>
+<pre><code>def calculate_average(scores):
+    return sum(scores) / len(scores)
+
+print(calculate_average([80, 90, 85]))
+</code></pre>
+<p><strong>Advanced Concepts:</strong> default parameters, lambda, type hints.</p>
+<pre><code>def square(x: int) -> int:
+    return x * x
+</code></pre>
+
+<h4>5️⃣ Data Structures (VERY IMPORTANT)</h4>
+<ul>
+<li>Lists: <code>scores = [80, 90, 70]</code></li>
+<li>Tuples: <code>point = (10, 20)</code></li>
+<li>Dictionaries: <code>student = {"name":"Rajesh","score":95}</code></li>
+<li>Sets: <code>unique_ids = {1,2,3}</code></li>
+</ul>
+
+<h2>🔹 LEVEL 2 – Intermediate Python for Data Handling</h2>
+<h3>Goal: Manipulate data effectively.</h3>
+
+<h4>6️⃣ List Comprehensions</h4>
+<pre><code>squares = [x*x for x in range(5)]
+</code></pre>
+
+<h4>7️⃣ File Handling</h4>
+<pre><code>with open("data.txt","r") as file:
+    data = file.read()
+</code></pre>
+
+<h4>8️⃣ Exception Handling</h4>
+<pre><code>try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Error occurred")
+</code></pre>
+
+<h4>9️⃣ Object-Oriented Programming (OOP)</h4>
+<pre><code>class Model:
+    def __init__(self,name):
+        self.name = name
+    def train(self):
+        print("Training model")
+</code></pre>
+<p><em>Why?</em> ML frameworks are built using OOP.</p>
+
+<h2>🔹 LEVEL 3 – Python for Scientific Computing</h2>
+<p>This is where ML actually begins.</p>
+
+<h4>🔟 NumPy (Foundation of ML)</h4>
+<pre><code>import numpy as np
+arr = np.array([1,2,3])
+A = np.array([[1,2],[3,4]])
+B = np.array([[5,6],[7,8]])
+print(np.dot(A,B))
+</code></pre>
+
+<h4>1️⃣1️⃣ Pandas (Data Preprocessing)</h4>
+<pre><code>import pandas as pd
+df = pd.read_csv("data.csv")
+df.head()
+df[df["age"] &gt; 30]
+df.fillna(df.mean(),inplace=True)
+df["income_per_age"] = df["income"] / df["age"]
+</code></pre>
+
+<h4>1️⃣2️⃣ Data Visualization</h4>
+<pre><code>import matplotlib.pyplot as plt
+plt.plot([1,2,3],[4,5,6])
+plt.show()
+
+import seaborn as sns
+sns.heatmap(df.corr())
+</code></pre>
+
+<h2>🔹 LEVEL 4 – Python for Machine Learning</h2>
+
+<h4>1️⃣3️⃣ Scikit-Learn Basics</h4>
+<pre><code>from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+X = df[["age","income"]]
+y = df["loan"]
+X_train,X_test,y_train,y_test = train_test_split(X,y)
+model = LinearRegression()
+model.fit(X_train,y_train)
+predictions = model.predict(X_test)
+</code></pre>
+
+<h4>1️⃣4️⃣ Pipelines</h4>
+<pre><code>from sklearn.pipeline import Pipeline
+</code></pre>
+
+<h4>1️⃣5️⃣ Model Evaluation</h4>
+<pre><code>from sklearn.metrics import accuracy_score
+accuracy_score(y_test,predictions)
+</code></pre>
+
+<h2>🔹 LEVEL 5 – Advanced Python for Deep Learning</h2>
+
+<h4>1️⃣6️⃣ PyTorch / TensorFlow Basics</h4>
+<pre><code>import torch
+x = torch.tensor([1.0,2.0])
+x = torch.tensor(2.0,requires_grad=True)
+y = x**2
+y.backward()
+print(x.grad)
+</code></pre>
+
+<h4>1️⃣7️⃣ Training Loop</h4>
+<pre><code>for epoch in range(100):
+    optimizer.zero_grad()
+    output = model(X)
+    loss = criterion(output,y)
+    loss.backward()
+    optimizer.step()
+</code></pre>
+
+<h2>🔹 LEVEL 6 – Advanced Python for AI Systems</h2>
+
+<h4>1️⃣8️⃣ Generators</h4>
+<pre><code>def data_stream():
+    for i in range(1000000):
+        yield i
+</code></pre>
+
+<h4>1️⃣9️⃣ Decorators</h4>
+<pre><code>def log_function(func):
+    def wrapper():
+        print("Running function")
+        func()
+    return wrapper
+</code></pre>
+
+<h4>2️⃣0️⃣ Async Programming</h4>
+<pre><code>import asyncio
+async def fetch_data():
+    await asyncio.sleep(1)
+</code></pre>
+
+<h4>2️⃣1️⃣ Multiprocessing / Parallelism</h4>
+<pre><code>from multiprocessing import Pool
+</code></pre>
+
+<h4>2️⃣2️⃣ Packaging &amp; Virtual Environments</h4>
+<pre><code>python -m venv venv
+pip install -r requirements.txt
+</code></pre>
+
+<h2>🔹 LEVEL 7 – Python for LLM &amp; AI Systems</h2>
+
+<h4>2️⃣3️⃣ API Integration</h4>
+<pre><code>import requests
+response = requests.post("API_URL", json=data)
+</code></pre>
+
+<h4>2️⃣4️⃣ Embeddings + Vector Operations</h4>
+<pre><code>from sklearn.metrics.pairwise import cosine_similarity
+</code></pre>
+
+<h4>2️⃣5️⃣ Building AI APIs (FastAPI)</h4>
+<pre><code>from fastapi import FastAPI
+app = FastAPI()
+@app.get("/")
+def root():
+    return {"message":"AI service running"}
+</code></pre>
+
+<h2>🔥 FINAL LEVEL – Python Mastery for AI Architect</h2>
+<p>You should be comfortable with modular code, ML pipelines, debugging, memory optimization, deploying models, async API design, logging &amp; monitoring.</p>
+
+<h2>🎯 What Most People Don’t Learn (But You Should)</h2>
+<ul>
+<li>Memory management in Python</li>
+<li>Time complexity analysis</li>
+<li>Profiling code</li>
+<li>Type checking (mypy)</li>
+<li>Testing (pytest)</li>
+<li>Clean architecture</li>
+</ul>
+
+<h2>💡 If You Master This</h2>
+<p>You can build ML models, RAG systems, AI APIs and become an ML Engineer moving toward AI Architect.</p>
+
+<nav>
+<a href="index.html">&laquo; Back to Course Home</a>
+</nav>
+</body>
+</html>

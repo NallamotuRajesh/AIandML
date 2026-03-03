@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervised Learning</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        nav a { margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Supervised Learning</h1>
+    <p>Algorithms that learn from labeled examples (regression and classification).</p>
+
+    <h2>Linear Regression Example</h2>
+    <pre><code>from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+pred = model.predict(X_test)
+</code></pre>
+
+    <h2>Logistic Regression Example</h2>
+    <pre><code>from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train, y_train)
+acc = model.score(X_test, y_test)
+</code></pre>
+
+    <h2>Concept Diagram</h2>
+    <pre class="mermaid">
+flowchart LR
+    A[Training Data] --> B[Model]
+    B --> C[Predictions]
+    C --> D[Errors]
+    D --> E[Update Weights]
+    </pre>
+
+    <nav>
+        <a href="index.html">&laquo; Home</a>
+        <a href="decision_trees.html">Next &raquo;</a>
+    </nav>
+</body>
+</html>

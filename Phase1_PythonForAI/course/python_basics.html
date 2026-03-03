@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Basics</title>
+    <script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        nav a { margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Python Basics</h1>
+    <p>Learn the foundation of Python: variables, data types, control flow, functions and simple I/O.</p>
+
+    <h2>Example</h2>
+    <pre><code># Variables & types
+x = 10
+name = "Alice"
+
+# Control flow
+if x &gt; 5:
+    print(f"{name} has a big number")
+
+# Function
+def greet(person):
+    return f"Hello, {person}!"
+
+print(greet(name))
+</code></pre>
+
+    <h2>Concept Diagram</h2>
+    <pre class="mermaid">
+flowchart LR
+    A[Variables] --> B[Control Flow]
+    B --> C[Functions]
+    C --> D[Modules]
+    D --> E[Packages]
+    </pre>
+
+    <h2>Exercises</h2>
+    <ul>
+        <li>Write a function that computes factorial recursively.</li>
+        <li>Read a list of numbers from input and print their sum.</li>
+    </ul>
+
+    <nav>
+        <a href="index.html">&laquo; Home</a>
+        <a href="numpy.html">Next &raquo;</a>
+    </nav>
+</body>
+</html>

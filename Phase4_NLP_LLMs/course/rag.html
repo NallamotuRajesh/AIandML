@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RAG (Retrieval Augmented Generation)</title>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+</script>
+<style>body{font-family:Arial, sans-serif;margin:40px;}pre{background:#f4f4f4;padding:10px;}nav a{margin:0 10px;}</style>
+</head>
+<body>
+<h1>RAG (Retrieval Augmented Generation)</h1>
+<p>Combine retrieval from vector DB with generation by LLM.</p>
+<h2>Example</h2>
+<pre><code>from langchain.vectorstores import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
+
+emb = HuggingFaceEmbeddings()
+docs = ["some text here"]
+vector_store = FAISS.from_documents(docs, emb)
+llm = ChatOpenAI(model_name="gpt-4")
+qa = RetrievalQA.from_chain_type(llm=llm, retriever=vector_store.as_retriever())
+print(qa.run("What is this?"))
+</code></pre>
+<h2>Diagram</h2>
+<pre class="mermaid">
+flowchart LR
+    Q[Query] --> E[Embed Query]
+    E --> S[Search Vector DB]
+    S --> R[Retrieve Docs]
+    R --> L[LLM with Context]
+    L --> A[Answer]
+</pre>
+<nav>
+<a href="vectordb.html">&laquo; Previous</a>
+<a href="langchain.html">Next &raquo;</a>
+</nav>
+</body>
+</html>
