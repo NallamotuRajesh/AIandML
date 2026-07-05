@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://stepsuser:stepspass@db:5432/stepsdb
+      - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
+    volumes:
+      - ./backend:/app
+      - ./ml_models:/app/ml_models
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=stepsuser
+      - POSTGRES_PASSWORD=stepspass
+      - POSTGRES_DB=stepsdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
