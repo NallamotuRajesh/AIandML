@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Steps Tracker",
+    "slug": "steps-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6200ee"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stepstracker.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#6200ee",
+        "foregroundImage": "./assets/icon.png"
+      },
+      "package": "com.stepstracker.app",
+      "permissions": [
+        "android.permission.ACTIVITY_RECOGNITION",
+        "android.permission.BODY_SENSORS"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sensors"
+    ]
+  }
+}
